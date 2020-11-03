@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        applicationId "com.innocent.chuck.jokes"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility versions.sourceCompat
+        targetCompatibility versions.targetCompat
+    }
+}
+
+dependencies {
+    implementation project(':core')
+
+    implementation deps.support.legacySupport
+    implementation deps.support.recyclerView
+    implementation deps.support.designSupport
+
+    implementation deps.google.dagger
+    kapt deps.google.daggerProcessor
+    implementation deps.google.gson
+
+    implementation deps.android.lifecycleExt
+    implementation deps.android.lifecycleCommon
+
+    implementation deps.square.picasso
+    implementation deps.square.okhttpDownloader
+    implementation deps.square.retrofit
+    implementation deps.square.okhttp
+    implementation deps.square.gsonConverter
+    implementation deps.square.retrofitRxAdapter
+}
